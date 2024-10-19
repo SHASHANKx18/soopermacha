@@ -1,0 +1,438 @@
+<!DOCTYPE>
+<!-- 
+    Name: Korey Divya  
+    File: homework1.html
+    Date Created: 2024-09-13
+    Date Updated: 2023-09-19
+    Purpose: MIS 7375 Homework 1... learning HTML and creating a form.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Patient Registration Form</title>
+    <!-- Load external CSS styles -->
+    <link rel="stylesheet" href="style1.css">
+    <script type="text/javascript" src = "homework.js">  </script>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div id="header">
+        <!-- Table fo r header layout -->
+        <table>
+            <tr>
+                <td>
+                    <!-- Logo image -->
+                    <img src="Plogo.jpeg" alt="Logo"> 
+                </td>
+                <td>
+                    <!-- Main heading -->
+                    <h1>Pavani Hospitals</h1>
+                </td>
+                <td valign="bottom" align="right">
+                    <!-- Display today's date -->
+                    Today is: <span id="today"></span> at <span id="currentTime"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Patient Registration Form -->
+   <form action="thankyou-1.html" method="get" id="registrationForm">
+        <!-- Personal Information Fieldset -->
+        <fieldset>
+            <legend>Personal Information:</legend>
+            <table>
+                <!-- First Name -->
+                <tr>
+                   <td><label for="fname" class="form-field">First name: <span class="required">*</span></label></td>
+                    <td>
+                        <input type="text" id="fname" name="fname" maxlength="30" pattern="[A-Za-z'-]+ {1,30}" title="Enter your first name (1-30 characters, letters and hyphens only)" required placeholder="Enter your first name">
+                        <span id="fnameError" class="error"></span>
+                    </td>
+                </tr>
+                 <!-- Middle name -->
+                <tr>
+                    <td><label for="mname">Middle Initial:<span class="required">*</span></label></td>
+                    <td>
+                        <input type="text" id="mname" name="mname" maxlength="1" pattern="[A-Za-z]{1}" title="Only one letter allowed for middle initial" required placeholder="Enter your middle initial">
+                        <span id="mnameError" class="error"></span>
+                    </td>
+                 </tr>
+                
+                <!-- Last Name -->
+                <tr>
+                 <td><label for="lname" class="form-field">Last Name:</label></td>
+                    <td>
+                        <input type="text" id="lname" name="lname" maxlength="30" pattern="^[A-Za-z'-2-5]{1,30}$" title="Enter your last name (1-30 characters, letters and hyphens only)" placeholder="Enter your last name">
+                        <span id="lnameError" class="error"></span>
+                    </td>
+                </tr>
+
+                <!-- Date Of Birth-->
+                <tr>
+                    <td><label for="dob" class="form-field">Date of Birth: <span class="required">*</span></label></td>
+                    <td>
+                        <input type="date" id="dob" name="dob" title="Enter your date of birth"min="1903-01-01" max="2024-10-19" required>
+                        <span id="dobError" class="error"></span>
+                    </td>
+                </tr>
+
+               <!-- Social Security Number-->
+                <tr>
+                    <td><label for="ssn" class="form-field">Social Security: <span class="required">*</span></label></td>
+                    <td>
+                        <input type="password" id="ssn" name="ssn" maxlength="11" pattern="\d{3}-\d{2}-\d{4}" title="Enter your Social Security Number in the format XXX-XX-XXXX" required placeholder="XXX-XX-XXXX">
+                        <span id="ssnError" class="error"></span>
+                    </td>
+                </tr>
+
+                 <!-- Phone -->
+                <tr>
+                 <td><label for="phone" class="form-field">Phone Number:</label></td>
+                    <td>
+                        <input type="tel" id="phone" name="phone" pattern="^\d{3}-\d{3}-\d{4}$" title="Enter your phone number (000-000-0000)" required placeholder="XXX-XXX-XXXX">
+                        <span id="phoneError" class="error-message"></span> 
+                        </td>
+                    </tr>
+                
+                 <!-- Email -->
+             <tr>
+    <td><label for="email" class="form-field">Email Address: <span class="required">*</span></label></td>
+    <td>
+        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+        <span id="emailError" class="error"></span>
+    </td>
+</tr>
+
+                <!-- Gender radio buttons -->
+                <tr>
+                    <td><label for="gender" class="form-field">Gender:</label></td>
+                    <td>
+                        <label><input type="radio" name="gender" value="male" required> Male</label><br>
+                        <label><input type="radio" name="gender" value="female" required> Female</label><br>
+                        <label><input type="radio" name="gender" value="other" required> Other</label>
+                     <span id="genderError" class="error"></span>
+                    </td>
+                </tr>
+                  <!-- Marital status dropdown -->
+                <tr>
+                    <td><label for="maritalStatus" class="form-field">Marital Status:</label></td>
+                    <td>
+                        <select id="maritalStatus" name="maritalStatus">
+                            <option value="" disabled selected>Select your marital status</option>
+                            <option value="single">Single</option>
+                            <option value="married">Married</option>
+                            <option value="divorced">Divorced</option>
+                            <option value="widowed">Widowed</option>
+                        </select>
+                        <span id="maritalStatusError" class="error"></span>
+                    </td>
+                </tr>
+                
+              <tr>
+    <td><label for="ageRange" class="form-field">Age Range (0-100):</label></td>
+    <td>
+        <div class="slidecontainer">
+            <input type="range" min="0" max="100" value="50" class="slider" id="ageRange" oninput="updateAgeValue()">
+            <p>Value: <span id="ageValue">50</span></p>
+            <span id="ageError" class="error"></span>
+        </div>
+    </td>
+</tr>
+
+                
+                  <!-- Occupation -->
+                  <tr>
+                    <td><label for="occupation" class="form-field">Occupation:</label></td>
+                    <td><input type="text" id="occupation" name="occupation" placeholder="Enter your occupation"></td>
+                    <span id="occupationError" class="error"></span>
+                </tr>
+               
+                  <!-- Address -->
+                  <tr>
+                   <td><label for="address" class="form-field">Address:</label></td>
+                    <td>
+                        <textarea id="address" name="address" maxlength="100" required placeholder="Enter your address"></textarea>
+                        <span id="addressError" class="error"></span>
+                    </td>
+                </tr>
+                
+                  <!-- City -->
+                  <tr>
+                    <td><label for="city" class="form-field">City:</label></td>
+                    <td>
+                        <input type="text" id="city" name="city" required placeholder="Enter your city">
+                        <span id="cityError" class="error"></span>
+                    </td>
+                 </tr>
+               
+                    <!-- State dropdown -->
+                     <tr>
+                    <td><label for="state">State: <span class="required">*</span></label></td>
+                    <td>
+                    <select id="state" name="state" required>
+                        <option value="" disabled selected>Select a state</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="DC">District of Columbia</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                        <option value="PR">Puerto Rico</option>
+                    </select>
+                    <span id="stateError" class="error"></span>
+
+                </td>
+                    
+                    <!-- Zip Code -->
+                    <td><label for="zip">Zip Code:</label></td>
+                    <td>
+                        <input type="text" id="zip" name="zip" pattern="^\d{5}(-\d{4})?$" required title="Please enter a valid zip code (e.g., 77002 or 77002-1234)" placeholder="Enter your zip code">
+                        <span id="zipError" class="error"></span>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+       <!-- Additional Information Fieldset -->
+<fieldset>
+    <legend>Additional Information:</legend>
+    <table>
+        <tr>
+            <td><label for="description" class="form-field">Description:</label></td>
+            <td>
+                <textarea id="description" name="description" rows="3" cols="40" placeholder="Enter any additional details"></textarea>
+                <span id="descriptionError" class="error"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Select Any Current Symptoms:</label></td>
+            <td>
+                <!-- Symptoms checkboxes -->
+                <label><input type="checkbox" name="symptom" value="fever"> Fever</label><br>
+                <label><input type="checkbox" name="symptom" value="cough"> Cough</label><br>
+                <label><input type="checkbox" name="symptom" value="shortnessOfBreath"> Shortness of Breath</label><br>
+                <label><input type="checkbox" name="symptom" value="fatigue"> Fatigue</label><br>
+                <label><input type="checkbox" name="symptom" value="headache"> Headache</label><br>
+                <label><input type="checkbox" name="symptom" value="nausea"> Nausea</label><br>
+                <label><input type="checkbox" name="symptom" value="dizziness"> Dizziness</label><br>
+                <label><input type="checkbox" name="symptom" value="chestPain"> Chest Pain</label><br>
+                <label><input type="checkbox" name="symptom" value="jointPain"> Joint Pain</label><br>
+                <label><input type="checkbox" name="symptom" value="abdominalPain"> Abdominal Pain</label><br>
+                <span id="symptomError" class="error"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="allergies" class="form-field">Allergies:</label></td>
+            <td>
+                <textarea id="allergies" name="allergies" rows="3" placeholder="Enter any known allergies"></textarea>
+                <span id="allergiesError" class="error"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="vaccinated" class="form-field">Vaccinated:</label></td>
+            <td>
+                <!-- Vaccination status radio buttons -->
+                <label><input type="radio" name="vaccinated" value="Yes"> Yes</label>
+                <label><input type="radio" name="vaccinated" value="No"> No</label>
+                <span id="vaccinatedError" class="error"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="insurance" class="form-field">Insurance:</label></td>
+            <td>
+                <!-- Insurance radio buttons -->
+                <label><input type="radio" name="insurance" value="Yes"> Yes</label>
+                <label><input type="radio" name="insurance" value="No"> No</label>
+                <span id="insuranceError" class="error"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="health" class="form-field">Health Rating (1-10):</label></td>
+            <td>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="10" value="10" class="slider" id="myRange">
+                    <p>Value: <span id="demo"></span></p>
+                    <span id="healthError" class="error"></span>
+                </div>
+            </td>
+        </tr>
+        <!-- User ID & Password -->
+        <tr>
+            <td><label for="userID" class="form-field">Desired User ID:</label></td>
+            <td>
+                <input type="text" id="userID" name="userID" maxlength="20" placeholder="Enter desired User ID">
+                <span id="userIDError" class="error"></span>
+            </td>
+        </tr>
+       <tr>
+    <td><label for="password" class="form-field">Password:</label></td>
+    <td>
+        <input type="password" id="password" name="password" maxlength="30" required placeholder="Enter password">
+        <span id="passwordError" class="error"></span>
+    </td>
+</tr>
+<tr>
+    <td><label for="confirmPassword" class="form-field">Confirm Password:</label></td>
+    <td>
+        <input type="password" id="confirmPassword" name="confirmPassword" maxlength="30" required placeholder="Re-enter password">
+        <span id="confirmPasswordError" class="error"></span>
+    </td>
+</tr>
+
+    </table>
+</fieldset>
+
+    
+        <!-- Submit, Reset, and Review buttons -->
+       <button type="button" id="reviewButton">Review Details</button>
+        <button type="submit">Submit</button>
+    </form>
+
+<!-- Modal for Review -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Review Your Details</h2>
+            <div id="reviewDetails"></div>
+            <button id="confirmSubmission">Confirm Submission</button>
+        </div>
+    </div>
+    <script>
+    // Display current date and time
+    document.getElementById('today').textContent = new Date().toLocaleDateString();
+    document.getElementById('currentTime').textContent = new Date().toLocaleTimeString();
+
+    // Review button functionality
+    document.getElementById('reviewButton').addEventListener('click', function() {
+        const fname = document.getElementById('fname').value;
+        const mname = document.getElementById('mname').value;
+        const lname = document.getElementById('lname').value;
+        const dob = document.getElementById('dob').value;
+        const ssn = document.getElementById('ssn').value.replace(/(\d{3})(\d{2})(\d{4})/, '$1-**-****');
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const gender = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value : '';
+        const maritalStatus = document.getElementById('maritalStatus').value;
+        const occupation = document.getElementById('occupation').value;
+        const address = document.getElementById('address').value;
+        const city = document.getElementById('city').value;
+        const state = document.getElementById('state').value;
+        const zip = document.getElementById('zip').value;
+        const allergies = document.getElementById('allergies').value;
+        const vaccinated = document.querySelector('input[name="vaccinated"]:checked') ? document.querySelector('input[name="vaccinated"]:checked').value : '';
+        const insurance = document.querySelector('input[name="insurance"]:checked') ? document.querySelector('input[name="insurance"]:checked').value : '';
+        
+        // Get health range slider value
+        const health = document.getElementById('demo').value;
+        const userID = document.querySelector('input[name="userID"]:checked') ? document.querySelector('input[name="userID"]:checked').value : '';
+
+        const reviewContent = `
+            <p><strong>First Name:</strong> ${fname}</p>
+            <p><strong>Middle Initial:</strong> ${mname}</p>
+            <p><strong>Last Name:</strong> ${lname}</p>
+            <p><strong>Date of Birth:</strong> ${dob}</p>
+            <p><strong>Social Security:</strong> ${ssn}</p>
+            <p><strong>Phone Number:</strong> ${phone}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Gender:</strong> ${gender}</p>
+            <p><strong>Marital Status:</strong> ${maritalStatus}</p>
+            <p><strong>Occupation:</strong> ${occupation}</p>
+            <p><strong>Address:</strong> ${address}</p>
+            <p><strong>City:</strong> ${city}</p>
+            <p><strong>State:</strong> ${state}</p>
+            <p><strong>Zip Code:</strong> ${zip}</p>
+            <p><strong>Allergies:</strong> ${allergies}</p>
+            <p><strong>Vaccinated:</strong> ${vaccinated}</p>
+            <p><strong>Insurance:</strong> ${insurance}</p>
+            <p><strong>Health Rating:</strong> ${health}</p>
+            <p><strong>User ID:</strong> ${userID}</p>
+        `;
+
+        document.getElementById('reviewDetails').innerHTML = reviewContent;
+        document.getElementById('reviewModal').style.display = 'block';
+    });
+
+    // Close modal functionality
+    document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('reviewModal').style.display = 'none';
+    });
+
+    // Confirm submission
+    document.getElementById('confirmSubmission').addEventListener('click', function() {
+        document.getElementById('registrationForm').submit(); // Ensure the form ID is correct
+    });
+
+    // Close modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('reviewModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+    
+    
+    </script>
+   
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <!-- Footer text and link -->
+            <p>Pavani Hospitals</p>
+            <p><a href="https://www.uh.edu">Contact Us</a></p>
+            <p>8181 Med center, TX 77054</p>
+        </div>
+    </footer>
+
+  
+</body>
+
+</html>
